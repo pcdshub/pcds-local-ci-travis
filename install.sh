@@ -29,7 +29,8 @@ fi
 # Install Extras such as PyQt5
 if [[ -n "${PIP_EXTRAS}" ]]; then
     echo "Installing extra pip dependencies."
-    pip install -v "${PIP_EXTRAS}"
+    # shellcheck disable=SC2086
+    pip install -v ${PIP_EXTRAS}
 fi
 
 # Install Extras such as PyQt5

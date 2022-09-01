@@ -15,6 +15,8 @@ WORKDIR /home/travis
 ARG ORG=pcdshub
 ARG REPO=
 ARG BRANCH=master
+ARG PIP_EXTRAS
+
 ENV TEST_PATH=/home/travis/${ORG}/${REPO}
 
 ENV CI_ORG="${ORG}"
@@ -24,12 +26,12 @@ ENV CI_REPO="${BRANCH}"
 ENV OFFICIAL_REPO="pcdshub/${REPO}"
 ENV DOCTR_VERSIONS_MENU="1"
 ENV DOCS_REQUIREMENTS="dev-requirements.txt"
-ENV PYTHON_LINT_OPTIONS="${REPO}"
+ENV PYTHON_LINT_OPTIONS="${IMPORT_NAME}"
 ENV CONDA_PACKAGE="${REPO}"
 ENV CONDA_RECIPE_FOLDER="conda-recipe"
 ENV CONDA_EXTRAS="pip"
 ENV CONDA_REQUIREMENTS="dev-requirements.txt"
-ENV PIP_EXTRAS="PyQt5 -e ./"
+ENV PIP_EXTRAS="${PIP_EXTRAS}"
 ENV MPLBACKEND=agg
 
 RUN git clone --branch=${BRANCH} --depth=1 https://github.com/${ORG}/${REPO}.git ${TEST_PATH}

@@ -1,6 +1,11 @@
+# Change at least these lines:
+##############################
 ORG ?= pcdshub
 REPO ?= typhos
 BRANCH ?= master
+IMPORT_NAME ?= $(REPO)
+PIP_EXTRAS ?= PyQt5 pip happi .
+##############################
 
 DOCKER_BUILDKIT ?= 1
 IMAGE_NAME ?= $(ORG)-$(REPO)-$(BRANCH)
@@ -20,6 +25,7 @@ build-image: Dockerfile
 				--build-arg ORG=$(ORG) \
 				--build-arg REPO=$(REPO) \
 				--build-arg BRANCH=$(BRANCH) \
+				--build-arg PIP_EXTRAS="$(PIP_EXTRAS)" \
 				.
 
 run-test: build-image
