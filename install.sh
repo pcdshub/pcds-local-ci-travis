@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# shellcheck disable=SC1090
 source ~/virtualenv/python3.9/bin/activate
 
 python --version
@@ -26,13 +27,13 @@ else
 fi
 
 # Install Extras such as PyQt5
-if [[ ! -z "${PIP_EXTRAS}" ]]; then
+if [[ -n "${PIP_EXTRAS}" ]]; then
     echo "Installing extra pip dependencies."
-    pip install -v ${PIP_EXTRAS}
+    pip install -v "${PIP_EXTRAS}"
 fi
 
 # Install Extras such as PyQt5
-if [[ ! -z "${PIP_CI_PACKAGES}" ]]; then
+if [[ -n "${PIP_CI_PACKAGES}" ]]; then
     echo "Installing pip dependencies for CI."
     pip install -v ${PIP_CI_PACKAGES}
 fi

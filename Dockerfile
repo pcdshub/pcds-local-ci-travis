@@ -12,21 +12,25 @@ RUN sudo apt-get -y install herbstluftwm libxkbcommon-x11-0 gdb
 USER travis
 WORKDIR /home/travis
 
-ENV OFFICIAL_REPO="pcdshub/lightpath"
+ARG ORG=pcdshub
+ARG REPO=
+ARG BRANCH=master
+ENV TEST_PATH=/home/travis/${ORG}/${REPO}
+
+ENV CI_ORG="${ORG}"
+ENV CI_BRANCH="${BRANCH}"
+ENV CI_REPO="${BRANCH}"
+
+ENV OFFICIAL_REPO="pcdshub/${REPO}"
 ENV DOCTR_VERSIONS_MENU="1"
 ENV DOCS_REQUIREMENTS="dev-requirements.txt"
-ENV PYTHON_LINT_OPTIONS="lightpath"
-ENV CONDA_PACKAGE="lightpath"
+ENV PYTHON_LINT_OPTIONS="${REPO}"
+ENV CONDA_PACKAGE="${REPO}"
 ENV CONDA_RECIPE_FOLDER="conda-recipe"
 ENV CONDA_EXTRAS="pip"
 ENV CONDA_REQUIREMENTS="dev-requirements.txt"
 ENV PIP_EXTRAS="PyQt5 -e ./"
 ENV MPLBACKEND=agg
-
-ENV ORG=pcdshub
-ENV REPO=lightpath
-ENV BRANCH=master
-ENV TEST_PATH=/home/travis/${ORG}/${REPO}
 
 RUN git clone --branch=${BRANCH} --depth=1 https://github.com/${ORG}/${REPO}.git ${TEST_PATH}
 
