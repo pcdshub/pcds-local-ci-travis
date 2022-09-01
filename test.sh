@@ -45,7 +45,16 @@ echo "add-auto-load-safe-path /opt/python/3.9.6/bin/python3.9-gdb.py" >> ~/.gdbi
 PYTHON_BIN="$(python -c 'import sys; print(sys.executable)')"
 export PYTHON_BIN
 
+# shellcheck disable=SC2016
+echo '"$PYTHON_BIN" -m pytest -v "${PYTEST_ARGS[@]}"' >> ~/.bash_history
+# shellcheck disable=SC2016
+echo 'less logs/run_tests_log.txt' >> ~/.bash_history
+
 if [ -f core ]; then
+  # shellcheck disable=SC2016
+  echo 'gdb "$PYTHON_BIN" core' >> ~/.bash_history
+  # shellcheck disable=SC2016
+  echo 'gdb --args "$PYTHON_BIN" -m pytest -v "${PYTEST_ARGS[@]}"' >> ~/.bash_history
   gdb "$PYTHON_BIN" core
 fi
 
