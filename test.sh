@@ -10,6 +10,7 @@ git pull
 python --version
 
 export DISPLAY=:99
+export QT_QPA_PLATFORM=offscreen
 
 # sudo systemctl start xvfb || exit 1
 /usr/bin/Xvfb ${DISPLAY} -screen 0 1024x768x24 &
@@ -49,6 +50,9 @@ export PYTHON_BIN
 echo '"$PYTHON_BIN" -m pytest -v "${PYTEST_ARGS[@]}"' >> ~/.bash_history
 # shellcheck disable=SC2016
 echo 'less logs/run_tests_log.txt' >> ~/.bash_history
+
+echo 'thread apply all bt' >> ./.gdb_history
+echo 'thread apply all py-bt' >> ./.gdb_history
 
 if [ -f core ]; then
   # shellcheck disable=SC2016
