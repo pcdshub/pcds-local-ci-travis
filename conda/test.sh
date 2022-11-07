@@ -6,6 +6,9 @@ git pull
 
 python --version
 
+# Set up the shell for micromamba: adds some wrapper bash functions to the env
+eval "$(~/bin/micromamba shell hook --shell=bash)"
+echo "Conda Environment Name':' ${CONDA_ENV_NAME:=testenv}"
 micromamba activate "${CONDA_ENV_NAME}"
 
 export DISPLAY=:99
