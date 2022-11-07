@@ -29,6 +29,8 @@ ulimit -c unlimited
 
 cd "${TEST_PATH}" || exit
 
+git pull
+
 pytest "${PYTEST_ARGS[@]}"
 
 # shellcheck disable=SC2181
