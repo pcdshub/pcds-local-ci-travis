@@ -2,14 +2,12 @@
 
 set -x
 
-git pull
-
-python --version
-
 # Set up the shell for micromamba: adds some wrapper bash functions to the env
 eval "$(~/bin/micromamba shell hook --shell=bash)"
 echo "Conda Environment Name':' ${CONDA_ENV_NAME:=testenv}"
 micromamba activate "${CONDA_ENV_NAME}"
+
+python --version
 
 export DISPLAY=:99
 export QT_QPA_PLATFORM=offscreen
@@ -28,6 +26,8 @@ PYTEST_ARGS+=(--log-file-date-format='%H:%M:%S')
 PYTEST_ARGS+=(--log-level=DEBUG)
 
 ulimit -c unlimited
+
+cd "${TEST_PATH}" || exit
 
 pytest "${PYTEST_ARGS[@]}"
 
