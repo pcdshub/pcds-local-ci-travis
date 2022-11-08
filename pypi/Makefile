@@ -29,9 +29,9 @@ build-image: Dockerfile
 				.
 
 run-test: build-image
-	docker run -it $(EXTRA_RUN_ARGS) $(IMAGE) "$(RUN_ARGS)"
+	docker run --rm -it $(EXTRA_RUN_ARGS) $(IMAGE) "$(RUN_ARGS)"
 
 inspect: build-image
-	docker run -it $(EXTRA_RUN_ARGS) $(IMAGE) "$(INSPECT_ARGS)"
+	docker run --rm -it $(EXTRA_RUN_ARGS) $(IMAGE) "$(INSPECT_ARGS)"
 
 .PHONY: all build-image run-test inspect
